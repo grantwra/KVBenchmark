@@ -107,6 +107,7 @@ public class Queries {
                             String key = keyObj.toString();
                             Object returned = MainActivity.globalMap.get(key);
 
+                            /*
                             try {
                                 fos = context.openFileOutput(file2.getName(), Context.MODE_APPEND);
                                 fos.write(("Op: " + op + "\n").getBytes());
@@ -116,7 +117,7 @@ public class Queries {
 
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
 
 
                             break;
@@ -128,6 +129,7 @@ public class Queries {
                             String value = valueObj.toString();
                             MainActivity.globalMap.put(key,value);
 
+                            /*
                             try {
                                 fos = context.openFileOutput(file2.getName(), Context.MODE_APPEND);
                                 fos.write(("Op: " + op + "\n").getBytes());
@@ -137,7 +139,7 @@ public class Queries {
 
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
 
                             break;
                         }
@@ -152,23 +154,23 @@ public class Queries {
                                 NavigableMap<String, Object> returnedMap = MainActivity.globalMap.headMap(key, true);
                                 Set<String> keys = returnedMap.keySet();
                                 int counting = 0;
-                                String keyAfterCount = "no";
+                                String keyAfterCount = null;
+
                                 for(String keySetKey : keys){
-                                    if(counting == Integer.getInteger(count)){
+                                    if(counting == Integer.valueOf(count)){
                                         keyAfterCount = keySetKey;
                                     }
                                     counting++;
-                                //}
-                                /*if(!keyAfterCount.contains("no")) {
-
-                                    //NavigableMap<String, Object> finalMap = returnedMap.tailMap(keyAfterCount, true);
-                                }*/
+                                }
+                                if(keyAfterCount != null) {
+                                    NavigableMap<String, Object> finalMap = returnedMap.tailMap(keyAfterCount, true);
+                                }
                             }
                             //int biggestKeyInt = Integer.getInteger(key) + Integer.getInteger(count);
                             //String biggestKey = Integer.toString(biggestKeyInt);
                             //SortedMap<String,Object> finalMap = MainActivity.globalMap.subMap(key,biggestKey);
                             //SortedMap<String,Object> finalMap = returnedMap.subMap(returnedMap.firstKey(),biggestKey);
-
+                            /*
                             try {
                                 fos = context.openFileOutput(file2.getName(), Context.MODE_APPEND);
                                 fos.write(("Op: " + op + "\n").getBytes());
@@ -178,7 +180,7 @@ public class Queries {
 
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
 
                             break;
                         }
@@ -186,6 +188,7 @@ public class Queries {
                         else if(op.contains("SEQ")){
                             Object seqObj = kvObject.get("seq");
                             String seq = seqObj.toString();
+
 
                             try {
                                 fos = context.openFileOutput(file2.getName(), Context.MODE_APPEND);
