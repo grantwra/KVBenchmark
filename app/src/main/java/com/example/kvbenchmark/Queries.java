@@ -186,20 +186,31 @@ public class Queries {
                         }
                         //ask about seq not having more then one op defined.....
                         else if(op.contains("SEQ")){
-                            Object seqObj = kvObject.get("seq");
+                            //Object seqObj = kvObject.get("seq");
+                            JSONArray seqObj = kvObject.getJSONArray("seq");
                             String seq = seqObj.toString();
+                            JSONObject updateObj = (JSONObject) seqObj.get(1);
+                            String upOb = updateObj.toString();
+                            Object keyob = updateObj.get("key");
+                            Object valOb = updateObj.get("value");
+                            String keyStr = keyob.toString();
+                            String valStr = valOb.toString();
 
-
+                            Object result = MainActivity.globalMap.get(keyStr);
+                            MainActivity.globalMap.put(keyStr,valStr);
+                            /*
                             try {
                                 fos = context.openFileOutput(file2.getName(), Context.MODE_APPEND);
                                 fos.write(("Op: " + op + "\n").getBytes());
-                                fos.write(("Seq: " + seq + "\n").getBytes());
-                                //fos.write(("Value: " + value + "\n").getBytes());
+                                //fos.write(("Seq: " + seq + "\n").getBytes());
+                                fos.write(("Update: " + upOb + "\n").getBytes());
+                                fos.write(("key: " + keyStr + "\n").getBytes());
+                                fos.write(("value: " + valStr + "\n").getBytes());
                                 fos.close();
 
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
 
                             break;
                         }
